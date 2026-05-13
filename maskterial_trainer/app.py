@@ -10,6 +10,7 @@ from .ui.main_window import MainWindow
 
 def main() -> None:
     app = QApplication.instance() or QApplication(sys.argv)
+    app.setStyle("Fusion")
     app.setApplicationName("MaskTerial Trainer")
     window = MainWindow()
     window.showMaximized()
