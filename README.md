@@ -139,8 +139,3 @@ a new stage.
   ensure your images have a clean background so the dataloader's
   auto-sampled class 0 survives denoising.
 
-## License
-
-TBD. Pick a license (MIT / Apache 2.0 / GPL) before publishing — note
-that `MaskTerial` itself ships under its own license, which doesn't
-constrain this project but does constrain any vendored copy.
