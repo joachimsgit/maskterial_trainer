@@ -30,8 +30,8 @@ itself needs PyTorch; segmentation training additionally needs
 ### 1. Clone
 
 ```bash
-git clone <your-fork-url> maskterial-trainer
-cd maskterial-trainer
+git clone https://github.com/joachimsgit/maskterial_trainer.git
+cd maskterial_trainer
 ```
 
 ### 2. Create a virtual environment
@@ -85,9 +85,36 @@ pip install -e ./MaskTerial
 ### 6. (Optional) Install detectron2 for M2F segmentation training
 
 Segmentation needs `detectron2` and a CUDA GPU. AMM/GMM work without it.
-See the [detectron2 install
-docs](https://detectron2.readthedocs.io/en/latest/tutorials/install.html)
-— the right command depends on your CUDA + torch version.
+
+**Linux / macOS** — install from source against your current torch:
+
+```bash
+pip install 'git+https://github.com/facebookresearch/detectron2.git'
+```
+
+**Windows** — detectron2 has no official pre-built wheels. You need
+Visual Studio Build Tools (with the "Desktop development with C++"
+workload) and a matching CUDA toolkit, then:
+
+```powershell
+git clone https://github.com/facebookresearch/detectron2.git
+pip install -e ./detectron2
+```
+
+If you hit compiler errors, the easiest workaround on Windows is to
+**train segmentation on the inference server instead**: in the Train
+tab, pick "Segmentation", scroll to the *Server training* section,
+build the training zip, and upload it via the website. Local AMM/GMM
+training does not need detectron2.
+
+Verify the install:
+
+```bash
+python -c "import detectron2; print(detectron2.__version__)"
+```
+
+The exact CUDA/torch/detectron2 version matrix is at
+<https://detectron2.readthedocs.io/en/latest/tutorials/install.html>.
 
 ## Run
 
@@ -112,18 +139,6 @@ on the left.
 
 Project folders are self-contained — you can move or copy one and the
 trainer will pick it up.
-
-## Architecture in one paragraph
-
-The GUI process only imports PySide6, numpy, OpenCV, PIL, matplotlib,
-and pycocotools — it stays launchable even when PyTorch or MaskTerial
-aren't installed yet. Training, evaluation, and inference all run as
-**subprocesses** under `python -m maskterial_trainer.runners.<name>` so
-heavy dependencies (`torch`, `maskterial`, `detectron2`) are imported in
-the child, never in the GUI. The runners stream `PROGRESS {json}`
-lines to stdout; the GUI parses them to drive progress bars and ETAs.
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the protocol and how to add
-a new stage.
 
 ## Known issues
 

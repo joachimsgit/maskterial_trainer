@@ -17,6 +17,11 @@ dependencies = [
     "scikit-learn",
 ]
 
+[project.urls]
+Homepage = "https://github.com/joachimsgit/maskterial_trainer"
+Repository = "https://github.com/joachimsgit/maskterial_trainer"
+Issues = "https://github.com/joachimsgit/maskterial_trainer/issues"
+
 [project.scripts]
 maskterial-trainer = "maskterial_trainer.app:main"
 
