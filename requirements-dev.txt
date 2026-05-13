@@ -1,0 +1,5 @@
+# Dev tooling on top of requirements.txt.
+-r requirements.txt
+
+ruff>=0.5
+pytest>=8

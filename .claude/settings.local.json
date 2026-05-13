@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"C:/Users/Emming/.claude/projects/c--Users-Emming-Desktop-Repos-training-projects-training-3rd-attempt/memory/\")",
+      "Read(//c/Users/Emming/.claude/projects/c--Users-Emming-Desktop-Repos-training-projects-training-3rd-attempt/memory/**)"
+    ]
+  }
+}
